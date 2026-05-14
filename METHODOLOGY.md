@@ -19,7 +19,7 @@ The scripts never call ambient `bun` from `PATH`.
 
 `./scripts/collect-machine-info.sh` writes sanitized hardware and OS details to `results/machine.json`.
 
-The script intentionally excludes serial number, hardware UUID, provisioning UDID, and other unique device identifiers.
+The script intentionally excludes unique device identifiers.
 
 ## Benchmark Tool
 

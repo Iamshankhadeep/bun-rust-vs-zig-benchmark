@@ -8,7 +8,7 @@ ensure_dirs
 product_name="$(sw_vers -productName)"
 product_version="$(sw_vers -productVersion)"
 build_version="$(sw_vers -buildVersion)"
-kernel="$(uname -a)"
+kernel="$(uname -srmp)"
 chip="$(sysctl -n machdep.cpu.brand_string)"
 model="$(sysctl -n hw.model)"
 memory_bytes="$(sysctl -n hw.memsize)"
@@ -30,7 +30,7 @@ cat > "$ROOT/results/machine.json" <<JSON
   "os": "$product_name $product_version",
   "build": "$build_version",
   "kernel": "$kernel",
-  "notes": "Serial number, hardware UUID, provisioning UDID, and other unique identifiers are intentionally excluded."
+  "notes": "Unique device identifiers are intentionally excluded."
 }
 JSON
 
