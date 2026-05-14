@@ -32,12 +32,14 @@ if ! gh auth status >/dev/null 2>&1; then
   exit 1
 fi
 
-echo "Installing Bun Rust rewrite PR build via bun-pr 30412"
+rust_commit="ed1a70f81708d7d137de8de057d11668c5f4e220"
+
+echo "Installing Bun Rust rewrite PR head build via bun-pr $rust_commit"
 export PATH="$ROOT/bin:$HOME/.bun/bin:$PATH"
-"$ZIG_BUN" x bun-pr 30412
+"$ZIG_BUN" x bun-pr "$rust_commit"
 
 candidate=""
-for path in "$HOME/.bun/bin/bun-30412" "$(command -v bun-30412 2>/dev/null || true)"; do
+for path in "$HOME/.bun/bin/bun-${rust_commit}" "$HOME/.bun/bin/bun-${rust_commit}-commit${rust_commit}" "$(command -v "bun-${rust_commit}" 2>/dev/null || true)"; do
   if [[ -n "$path" && -x "$path" ]]; then
     candidate="$path"
     break
@@ -45,7 +47,7 @@ for path in "$HOME/.bun/bin/bun-30412" "$(command -v bun-30412 2>/dev/null || tr
 done
 
 if [[ -z "$candidate" ]]; then
-  echo "Unable to locate bun-30412 after running bun-pr. Not using a later canary." >&2
+  echo "Unable to locate bun-$rust_commit after running bun-pr. Not using a later canary." >&2
   exit 1
 fi
 
@@ -53,8 +55,8 @@ cp "$candidate" "$RUST_BUN"
 chmod +x "$RUST_BUN"
 
 rust_revision="$("$RUST_BUN" --revision)"
-if [[ "$rust_revision" != *"ed1a70f81708"* && "$rust_revision" != *"23427dbc12fd"* ]]; then
-  echo "Rust build revision does not match PR #30412 head or merge commit: $rust_revision" >&2
+if [[ "$rust_revision" != *"ed1a70f81"* ]]; then
+  echo "Rust build revision does not match PR #30412 head commit $rust_commit: $rust_revision" >&2
   exit 1
 fi
 

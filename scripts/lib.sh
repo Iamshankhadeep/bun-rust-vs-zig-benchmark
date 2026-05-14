@@ -64,7 +64,7 @@ record_binaries() {
     "version": "$rust_version",
     "revision": "$rust_revision",
     "sha256": "$rust_sha",
-    "source": "bunx bun-pr 30412"
+    "source": "bunx bun-pr ed1a70f81708d7d137de8de057d11668c5f4e220"
   }
 }
 JSON
