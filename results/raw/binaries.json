@@ -1,0 +1,18 @@
+{
+  "bun_zig": {
+    "label": "Bun v1.3.14 stable Zig baseline",
+    "path": "/Users/blank/Github/sidehustle/bun-rust-vs-zig-benchmark/bin/bun-zig",
+    "version": "1.3.14",
+    "revision": "1.3.14+0d9b296af",
+    "sha256": "e0c90ec15d33363e6b70713d56bc3b2c7585c17f40a0fe0f8fd9305901d4e233",
+    "source": "https://github.com/oven-sh/bun/releases/download/bun-v1.3.14/bun-darwin-aarch64.zip"
+  },
+  "bun_rust": {
+    "label": "Bun Rust rewrite PR build",
+    "path": "/Users/blank/Github/sidehustle/bun-rust-vs-zig-benchmark/bin/bun-rust",
+    "version": "1.3.14",
+    "revision": "1.3.14-canary.1+ed1a70f81",
+    "sha256": "a1d41a8c23d842ef342de882f069049949842e9609c311d6b99235c7939feac5",
+    "source": "bunx bun-pr ed1a70f81708d7d137de8de057d11668c5f4e220"
+  }
+}

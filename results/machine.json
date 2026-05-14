@@ -1,0 +1,14 @@
+{
+  "machine": "MacBook Air",
+  "model": "MacBookAir10,1",
+  "chip": "Apple M1",
+  "core_description": "8 (4 Performance and 4 Efficiency)",
+  "physical_cpu": 8,
+  "logical_cpu": 8,
+  "memory_bytes": 17179869184,
+  "memory_gb": 16,
+  "os": "macOS 26.4.1",
+  "build": "25E253",
+  "kernel": "Darwin 25.4.0 arm64 arm",
+  "notes": "Unique device identifiers are intentionally excluded."
+}
