@@ -11,7 +11,7 @@ The goal is auditability. The scripts pin two separate Bun executables, collect 
 | `bun-zig` | Bun v1.3.14 stable release | `0d9b296af33f2b851fcbf4df3e9ec89751734ba4` |
 | `bun-rust` | PR #30412 head artifact via `bun-pr ed1a70f81708d7d137de8de057d11668c5f4e220` | `ed1a70f81708d7d137de8de057d11668c5f4e220` |
 
-If the PR artifact cannot be downloaded or its revision does not match the expected PR head or merge commit, the install script exits without running benchmarks.
+If the PR artifact cannot be downloaded or its revision does not match the expected PR head, the install script exits without running benchmarks.
 
 ## Requirements
 
