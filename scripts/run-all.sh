@@ -17,5 +17,6 @@ fi
 ./benchmarks/run-build.sh
 ./benchmarks/run-test.sh
 ./benchmarks/run-install.sh
+./benchmarks/run-runtime.sh
 
 ./bin/bun-zig scripts/summarize-results.ts
