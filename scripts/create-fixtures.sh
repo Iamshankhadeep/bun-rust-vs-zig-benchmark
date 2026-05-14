@@ -27,7 +27,8 @@ cat > "$FIXTURES/react-app/node_modules/react/package.json" <<'JSON'
   "type": "module",
   "exports": {
     ".": "./index.js",
-    "./jsx-runtime": "./jsx-runtime.js"
+    "./jsx-runtime": "./jsx-runtime.js",
+    "./jsx-dev-runtime": "./jsx-dev-runtime.js"
   }
 }
 JSON
@@ -50,6 +51,14 @@ export function jsx(type, props, key) {
 }
 
 export const jsxs = jsx;
+JS
+
+cat > "$FIXTURES/react-app/node_modules/react/jsx-dev-runtime.js" <<'JS'
+export const Fragment = Symbol.for("react.fragment");
+
+export function jsxDEV(type, props, key) {
+  return { type, props: props || {}, key: key == null ? null : String(key) };
+}
 JS
 
 for i in $(seq 0 199); do
