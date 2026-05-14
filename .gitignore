@@ -1,0 +1,6 @@
+.DS_Store
+.cache/
+tmp/
+bin/
+fixtures/install-fixture/node_modules/
+fixtures/install-fixture/bun.lockb
