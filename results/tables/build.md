@@ -1,4 +1,4 @@
 | Command | Mean [ms] | Min [ms] | Max [ms] | Relative |
 |:---|---:|---:|---:|---:|
-| `zig: bun build TSX fixture` | 11.2 ± 0.4 | 10.7 | 12.0 | 1.00 |
-| `rust: bun build TSX fixture` | 11.8 ± 0.3 | 11.3 | 12.6 | 1.05 ± 0.05 |
+| `zig: bun build TSX fixture` | 11.6 ± 0.4 | 11.0 | 12.4 | 1.00 |
+| `rust: bun build TSX fixture` | 11.9 ± 0.5 | 11.5 | 13.3 | 1.03 ± 0.06 |

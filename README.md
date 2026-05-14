@@ -4,6 +4,14 @@ This repository benchmarks Bun v1.3.14 stable against the Rust rewrite PR build 
 
 The goal is auditability. The scripts pin two separate Bun executables, collect sanitized machine metadata, run deterministic benchmark fixtures with `hyperfine`, and preserve raw result data.
 
+The suite covers Bun's built-in tooling and Bun as a runtime:
+
+- Startup: version and eval startup cost.
+- Build: TSX bundling fixture.
+- Test: `bun:test` fixture.
+- Install: warm `bun install --frozen-lockfile`.
+- Runtime: original loop, JSON, string/regex, filesystem, and HTTP workloads.
+
 ## Comparison
 
 | Label | Source | Expected revision |
@@ -30,9 +38,6 @@ brew install hyperfine
 ## Run
 
 ```bash
-./scripts/create-fixtures.sh
-./scripts/install-buns.sh
-./scripts/collect-machine-info.sh
 ./scripts/run-all.sh
 ```
 
@@ -43,6 +48,10 @@ Generated outputs:
 - `results/tables/*.md`
 - `results/SUMMARY.md`
 - `results/raw/binaries.json`
+
+## References
+
+See [`REFERENCES.md`](./REFERENCES.md) for attribution and license notes. Runtime workload code in this repository is original; external benchmark projects were used only as methodology references.
 
 ## Caveat
 

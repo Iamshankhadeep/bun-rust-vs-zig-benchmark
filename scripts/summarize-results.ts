@@ -24,6 +24,7 @@ const files = [
   ["Build", "build.json"],
   ["Test", "test.json"],
   ["Install", "install.json"],
+  ["Runtime", "runtime.json"],
 ] as const;
 
 function ms(seconds: number) {
