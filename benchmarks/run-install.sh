@@ -26,6 +26,7 @@ rm -rf "$fixture/node_modules"
 hyperfine --warmup 2 --runs 10 \
   --prepare "rm -rf '$fixture/node_modules'" \
   --export-json "$RAW_DIR/install.json" \
-  --export-markdown "$TABLE_DIR/install.md" \
   -n "zig: warm bun install" "$ZIG_BUN install --cwd '$fixture' --frozen-lockfile --cache-dir '$ROOT/.cache/install-zig' --silent" \
   -n "rust: warm bun install" "$RUST_BUN install --cwd '$fixture' --frozen-lockfile --cache-dir '$ROOT/.cache/install-rust' --silent"
+
+"$ZIG_BUN" scripts/summarize-results.ts >/dev/null

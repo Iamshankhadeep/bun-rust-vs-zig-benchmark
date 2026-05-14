@@ -1,4 +1,4 @@
-| Command | Mean [ms] | Min [ms] | Max [ms] | Relative |
-|:---|---:|---:|---:|---:|
-| `zig: warm bun install` | 11.2 ± 0.4 | 10.6 | 12.1 | 1.07 ± 0.06 |
-| `rust: warm bun install` | 10.5 ± 0.4 | 10.1 | 11.3 | 1.00 |
+| Command | Mean | Stddev | Min | Max | Pair Relative |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| `zig: warm bun install` | 11.17 ms | 0.41 ms | 10.57 ms | 12.06 ms | 1.07x |
+| `rust: warm bun install` | 10.47 ms | 0.41 ms | 10.09 ms | 11.29 ms | 1.00x |

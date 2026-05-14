@@ -12,6 +12,8 @@ The suite covers Bun's built-in tooling and Bun as a runtime:
 - Install: warm `bun install --frozen-lockfile`.
 - Runtime: original loop, JSON, string/regex, filesystem, and HTTP workloads.
 
+Result tables use `Pair Relative`: each Zig/Rust command pair is compared only with the matching workload, not against unrelated rows in the same section.
+
 ## Comparison
 
 | Label | Source | Expected revision |

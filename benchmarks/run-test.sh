@@ -11,6 +11,7 @@ cd "$ROOT"
 
 hyperfine --warmup 3 --runs 20 \
   --export-json "$RAW_DIR/test.json" \
-  --export-markdown "$TABLE_DIR/test.md" \
   -n "zig: bun test fixture" "$ZIG_BUN test fixtures/test-suite" \
   -n "rust: bun test fixture" "$RUST_BUN test fixtures/test-suite"
+
+"$ZIG_BUN" scripts/summarize-results.ts >/dev/null

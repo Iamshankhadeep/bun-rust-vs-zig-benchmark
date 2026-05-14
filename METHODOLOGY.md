@@ -34,6 +34,7 @@ Rules:
 - Runtime benchmark: 3 warmups, 15 measured runs.
 - Raw JSON output is kept under `results/raw/`.
 - Markdown tables are kept under `results/tables/`.
+- Relative columns are pairwise: each `zig:` command is compared only with the matching `rust:` command for the same workload.
 - Very small differences with overlapping uncertainty are treated as neutral.
 
 ## Benchmarks

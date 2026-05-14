@@ -11,7 +11,6 @@ cd "$ROOT"
 
 hyperfine --warmup 3 --runs 15 \
   --export-json "$RAW_DIR/runtime.json" \
-  --export-markdown "$TABLE_DIR/runtime.md" \
   -n "zig: runtime loops" "$ZIG_BUN fixtures/runtime/loops.ts" \
   -n "rust: runtime loops" "$RUST_BUN fixtures/runtime/loops.ts" \
   -n "zig: runtime json" "$ZIG_BUN fixtures/runtime/json.ts" \
@@ -22,3 +21,5 @@ hyperfine --warmup 3 --runs 15 \
   -n "rust: runtime filesystem" "$RUST_BUN fixtures/runtime/filesystem.ts" \
   -n "zig: runtime http" "$ZIG_BUN fixtures/runtime/http.ts" \
   -n "rust: runtime http" "$RUST_BUN fixtures/runtime/http.ts"
+
+"$ZIG_BUN" scripts/summarize-results.ts >/dev/null

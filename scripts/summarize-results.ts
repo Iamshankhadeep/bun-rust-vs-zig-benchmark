@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -18,6 +18,7 @@ type HyperfineFile = {
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const resultsDir = join(root, "results");
 const rawDir = join(resultsDir, "raw");
+const tableDir = join(resultsDir, "tables");
 
 const files = [
   ["Startup", "startup.json"],
@@ -35,7 +36,37 @@ function readJson<T>(path: string): T {
   return JSON.parse(readFileSync(path, "utf8")) as T;
 }
 
+function pairKey(command: string) {
+  return command.replace(/^(zig|rust):\s*/, "");
+}
+
+function pairFastest(results: HyperfineResult[]) {
+  const fastest = new Map<string, number>();
+
+  for (const result of results) {
+    const key = pairKey(result.command);
+    fastest.set(key, Math.min(fastest.get(key) ?? Number.POSITIVE_INFINITY, result.mean));
+  }
+
+  return fastest;
+}
+
+function renderResultTable(data: HyperfineFile) {
+  const fastest = pairFastest(data.results);
+  let table = "| Command | Mean | Stddev | Min | Max | Pair Relative |\n";
+  table += "| --- | ---: | ---: | ---: | ---: | ---: |\n";
+
+  for (const result of data.results) {
+    const baseline = fastest.get(pairKey(result.command)) ?? result.mean;
+    const relative = result.mean / baseline;
+    table += `| \`${result.command}\` | ${ms(result.mean)} | ${ms(result.stddev)} | ${ms(result.min)} | ${ms(result.max)} | ${relative.toFixed(2)}x |\n`;
+  }
+
+  return table;
+}
+
 let markdown = "# Benchmark Summary\n\n";
+mkdirSync(tableDir, { recursive: true });
 
 const machinePath = join(resultsDir, "machine.json");
 if (existsSync(machinePath)) {
@@ -64,18 +95,11 @@ for (const [title, file] of files) {
   if (!existsSync(path)) continue;
 
   const data = readJson<HyperfineFile>(path);
-  const fastest = Math.min(...data.results.map((result) => result.mean));
+  const table = renderResultTable(data);
 
   markdown += `## ${title}\n\n`;
-  markdown += "| Command | Mean | Stddev | Min | Max | Relative |\n";
-  markdown += "| --- | ---: | ---: | ---: | ---: | ---: |\n";
-
-  for (const result of data.results) {
-    const relative = result.mean / fastest;
-    markdown += `| \`${result.command}\` | ${ms(result.mean)} | ${ms(result.stddev)} | ${ms(result.min)} | ${ms(result.max)} | ${relative.toFixed(2)}x |\n`;
-  }
-
-  markdown += "\n";
+  markdown += `${table}\n`;
+  writeFileSync(join(tableDir, file.replace(".json", ".md")), table);
 }
 
 markdown += "## Caveat\n\n";
