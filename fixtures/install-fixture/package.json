@@ -6,7 +6,7 @@
   "dependencies": {
     "is-even": "1.0.0",
     "is-odd": "3.0.1",
-    "nanoid": "5.0.9",
+    "nanoid": "5.1.16",
     "picocolors": "1.1.1"
   },
   "devDependencies": {
